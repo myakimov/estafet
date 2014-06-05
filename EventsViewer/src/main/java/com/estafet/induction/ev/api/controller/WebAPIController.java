@@ -57,13 +57,15 @@ public class WebAPIController {
         if (show != null) {
             switch (show) {
                 case "handled":
-                    query += "WHERE e.is_handled = true";
+                    query += "WHERE e.is_handled = true ";
                     break;
                 case "unhandled":
-                    query += "WHERE e.is_handled = false";
+                    query += "WHERE e.is_handled = false ";
                     break;
             }
         }
+        
+        query += "ORDER BY ID";
         
         // Spring JDBC Template used to map each row to an Event instance
         List<Event> events = jdbcTemplate.query(query, new Object[]{},
@@ -75,7 +77,7 @@ public class WebAPIController {
                         event.setHubID(rs.getInt("HUB_ID"));
                         event.setDescription(rs.getString("DESCRIPTION"));
                         event.setType(rs.getInt("TYPE"));
-                        event.setEventDate(rs.getTimestamp("EVENT_DATE"));
+                        event.setEventDate(rs.getTimestamp("EVENT_DATE").toString());
                         event.setHandled(rs.getBoolean("IS_HANDLED"));
 
                         return event;
@@ -90,19 +92,17 @@ public class WebAPIController {
      * practice the function will not have any effect on them
      * 
      * @param eventID the event to be marked
-     * @return "Event Handled" string
      */
-    @RequestMapping(value = "/event/handle/{eventID}", method = RequestMethod.POST)
+    @RequestMapping(value = "/events/{eventID}", method = RequestMethod.DELETE)
     public @ResponseBody
-    String handleEvent(@PathVariable int eventID) {
-       JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource.dataSource());
+    void handleEvent(@PathVariable int eventID) {
+        System.out.println("Removing event : " + eventID);
+        
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource.dataSource());
 
        jdbcTemplate.update(
                     " UPDATE estafet.events SET is_handled = true   " +
                     " WHERE id = ?                                  ",
                     eventID);
-
-        return "Event Handled";
     }
-    
 }

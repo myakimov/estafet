@@ -14,7 +14,7 @@ public class Event {
     private String description;
     private int hubID;
     private int type;
-    private Date eventDate;
+    private String eventDate;
     private boolean handled;
 
     /**
@@ -87,14 +87,14 @@ public class Event {
     /**
      * @return the eventDate
      */
-    public Date getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
 
     /**
      * @param eventDate the eventDate to set
      */
-    public void setEventDate(Date eventDate) {
+    public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
 
