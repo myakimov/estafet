@@ -1,3 +1,5 @@
+//Controller
+//Handled all view loading and initializations
 EventsManager.module("EventsApp.List", function(List, EventsManager, Backbone, Marionette, $, _){
     List.Controller = {
         listEvents: function(){

@@ -1,3 +1,4 @@
+// Entities together with some initialization code
 EventsManager.module("Entities", function(Entities, EventsManager,Backbone, Marionette, $, _){
 
  // Model for the events

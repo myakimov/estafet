@@ -14,11 +14,14 @@
     </div>
 </div>
 
+<!-- Main Region -->
 <div id="main-region" class="container">
      <p>Here is static content in the web page. You'll notice that it gets
      replaced by our app as soon as we start it.</p>
 </div>
 
+<!-- Templates -->
+<!-- Headers Template -->
 <script type="text/template" id="different-template">
     <td> <%= id %></td>
     <td> <%= hubID %></td>
@@ -33,6 +36,8 @@
     <% } %>
 </script>
 
+
+<!-- Single Template -->
 <script type="text/template" id="events-list">
     <thead>
         <tr>
@@ -47,11 +52,14 @@
     </tbody>
 </script>
 
+<!-- List Template -->
 <script type="text/template" id="events-list-layout">
      <div id="panel-region"></div>
      <div id="events-region"></div>
 </script>
 
+
+<!-- Filtering template -->
 <script type="text/template" id="events-list-panel">
     <select id="selectpicker">
         <option value="handled">Handled</option>
@@ -61,7 +69,7 @@
 </script>
 
 
-
+<!-- Libraries JavaScript includes -->
 <script src="./assets/js/vendor/jquery.js"></script>
 <script src="./assets/js/vendor/json2.js"></script>
 <script src="./assets/js/vendor/underscore.js"></script>
@@ -74,6 +82,7 @@
 <script src="./assets/js/apps/events/list/events_list.js"></script>
 <script src="./assets/js/apps/events/list/events_controller.js"></script>
 
+<!-- Entry point -->
 <script type="text/javascript">
  EventsManager.start();
 </script>

@@ -1,5 +1,8 @@
+//Views
+//All views definitions are in this source file
 EventsManager.module("EventsApp.List", function(List, EventsManager,Backbone, Marionette, $, _){
 
+    // Complex layout with more than one template
     List.Layout = Marionette.Layout.extend({
         template: "#events-list-layout",
 
@@ -9,6 +12,7 @@ EventsManager.module("EventsApp.List", function(List, EventsManager,Backbone, Ma
         }
      });
 
+    // Simple ItemView for the filter select
     List.Panel = Marionette.ItemView.extend({
         template: "#events-list-panel",
 
@@ -21,11 +25,13 @@ EventsManager.module("EventsApp.List", function(List, EventsManager,Backbone, Ma
         }
     });
 
-     // Some view - TheView
+     // Main item view - one of this is created for each event
      List.Event = Marionette.ItemView.extend({
         tagName : "tr",
         template : "#different-template",
 
+        // Events handlers
+        // Handle discard and highlight
         events: {
             "click button.js-discard" : function(e) {
                 e.stopPropagation();
@@ -34,12 +40,14 @@ EventsManager.module("EventsApp.List", function(List, EventsManager,Backbone, Ma
             "click td": "highlightName"
         },
 
+
         highlightName: function(e){
             this.$el.toggleClass("warning");
         }
 
      });
 
+     // Complex composite view which handled collections
      List.Events = Marionette.CompositeView.extend({
         tagName : "table",
         className: "table table-hover",
